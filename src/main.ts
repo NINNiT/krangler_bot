@@ -1,17 +1,19 @@
-import { InboxStream, CommentStream, SubmissionStream } from 'snoostorm';
+import { CommentStream } from 'snoostorm';
 import client from './redditApi';
 import { generate } from './generator';
-import { Comment, Submission } from 'snoowrap';
+import { Comment } from 'snoowrap';
 
 // ACTIONS ////////////////////////////////////////////////////////////////////
-const krangleSearch = (body: string): boolean => {
+const krangleSearch = (text: string): boolean => {
   let regex = /krangl/i;
-  if (regex.test(body)) return true;
+  if (regex.test(text)) return true;
   return false;
 };
 
-const handleProcessing = (input: Comment) => {
-  if (krangleSearch(input.body)) console.log(input.body);
+// Handle incoming comments
+const handleProcessing = (comment: Comment): void => {
+  // Filter out non-krangled stuff
+  if (krangleSearch(comment.body)) generate(comment);
 };
 
 // EVENTS //////////////////////////////////////////////////////////////////////
@@ -21,16 +23,6 @@ const comments = new CommentStream(client, {
   pollTime: 2000,
 });
 
-comments.on('item', (input) => {
-  handleProcessing(input);
+comments.on('item', (comment) => {
+  handleProcessing(comment);
 });
-
-// const submissions = new SubmissionStream(client, {
-//   subreddit: 'PathOfExile',
-//   limit: 10,
-//   pollTime: 2000,
-// });
-
-// submissions.on('item', (input) => {
-//   handleIncoming(input.title, 'post');
-// });

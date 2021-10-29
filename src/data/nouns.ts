@@ -1,0 +1,35 @@
+export const nouns = [
+  'fierceness',
+  'environmental property',
+  'destroyed area',
+  'envirosuit',
+  'thundercube',
+  'conqueror',
+  'demonic spirit',
+  'spirit card',
+  'sulphite',
+  'resonator',
+  'metanode',
+  'item',
+  'sacramental oil',
+  'mutated horror',
+  'quadratic shrine',
+  'head of dagk',
+  'reputation',
+  'map event',
+  'resistance',
+  'dimensional strangle',
+  'miasma',
+  'weakness cap',
+  'swine shrine',
+  'demonic maul',
+  'fishwife',
+  'ailment',
+  'fishing rod',
+  'explody chest',
+  'triple corrupted slayer charge',
+];
+
+export const getRandNoun = (): string => {
+  return nouns[Math.floor(Math.random() * nouns.length)];
+};
