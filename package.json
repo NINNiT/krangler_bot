@@ -1,0 +1,40 @@
+{
+  "name": "krangler_bot",
+  "version": "1.0.0",
+  "description": "A reddit bot for PathOfExile which krangles various stuff ",
+  "main": "main.js",
+  "scripts": {
+    "dev": "nodemon src/main.ts",
+    "start": "ts-node src/main.ts",
+    "build": "tsc",
+    "lint": "eslint './src/**/*.{ts,tsx}'",
+    "prettier": "prettier --write './src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NINNiT/krangler_bot.git"
+  },
+  "author": "NINNiT",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NINNiT/krangler_bot/issues"
+  },
+  "homepage": "https://github.com/NINNiT/krangler_bot#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.33.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-airbnb-typescript": "^14.0.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.2",
+    "nodemon": "^2.0.14",
+    "prettier": "^2.4.1",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.4.4"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "snoostorm": "^1.5.2",
+    "snoowrap": "^1.23.0"
+  }
+}
