@@ -10,7 +10,7 @@ export const openers = [
 ];
 
 export const midSentences = [
-  '{{ verb }} the {{ noun }} you need to {{ verb }} a {{ adjective }} {{ noun }} with your {{ noun }}.',
+  '{{ verb }} the {{ noun }} with your {{ noun }}.',
   '{{ adverb }} {{ verb }} the {{ noun }} and {{ verb }} the {{ noun }}, with some luck you will get a {{ noun }}.',
   '{{ adverb }} {{ verb }} it, beware of the dangers that the {{ noun }} can bring.',
   '{{ verb }} it, you should recieve an {{ adjective }} {{ noun }} {{ of }}. You could go even further.',
@@ -23,7 +23,7 @@ export const closings = [
   'see you on the shores of weaeclast!',
 ];
 
-export const linkingWords = ['then,', 'while you', 'once you', 'if you correctly', 'afterwards,'];
+export const linkingWords = ['then', 'while you', 'once you', 'if you correctly', 'afterwards,'];
 
 export const getRandOpener = (): string => {
   return openers[Math.floor(Math.random() * openers.length)];
@@ -38,5 +38,5 @@ export const getRandClosing = (): string => {
 };
 
 export const getRandLinkingWord = (): string => {
-  return linknigWords[Math.floor(Math.random() * linkingWords.length)];
+  return linkingWords[Math.floor(Math.random() * linkingWords.length)];
 };
