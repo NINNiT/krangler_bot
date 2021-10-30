@@ -12,7 +12,7 @@ const substitutePlaceholders = (s: string, usr: string): string => {
     .map((item) => {
       switch (item) {
         case '{{user}}':
-          return usr;
+          return 'u/' + usr;
           break;
         case '{{noun}}':
           return getRandNoun();
@@ -58,5 +58,9 @@ export const generate = (comment: Comment): string => {
   reply += '\n\n';
   reply += substitutePlaceholders(getRandClosing(), comment.author.name) + '!';
 
+  //add footer
+  reply += '\n\n --- \n\n';
+  reply +=
+    '^(masterninni brought me into this scourged land. i like krangling stuff automatically, so please DM him if there are any problems. beep.)';
   return reply;
 };

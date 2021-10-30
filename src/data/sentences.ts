@@ -14,12 +14,17 @@ export const midSentences = [
   '{{adverb}} {{verb}} the {{noun}} and {{verb}} the {{noun}}',
   '{{adverb}} {{verb}} it and beware of the dangers that the {{noun}} can bring',
   '{{verb}} it, you should receive an {{adjective}} {{noun}} {{of}}',
+  'pray to kitava using your {{adjective}} {{noun}}',
+  '{{verb}} it your {{adjective}} {{noun}} should give you {{noun}}',
 ];
 
 export const closings = [
   'if done correctly, you should now have an {{adjective}} {{noun}} {{of}} which - to be honest - is pretty neat',
   'congrats, you are know the proud owner of the following item: {{adjective}} {{noun}} {{of}}',
   'i hope you learned something today',
+  'otherwise, you could always pray to solaris',
+  'otherwise, you could always pray to lunaris',
+  'well, i will resume different krangles now. see you.',
   'see you on the shores of weaeclast',
 ];
 
