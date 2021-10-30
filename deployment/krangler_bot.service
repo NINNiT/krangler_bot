@@ -1,0 +1,14 @@
+
+[Unit]
+Description=A reddit bot for PathOfExile that krangles various items
+
+[Service]
+WorkingDirectory=/srv/krangler_bot
+ExecStart=/usr/bin/npm start
+Restart=always
+RestartSec=15
+User=kranglebot
+Type=simple
+
+[Install]
+WantedBy=multi-user.target

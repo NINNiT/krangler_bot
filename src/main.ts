@@ -1,3 +1,5 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import { CommentStream } from 'snoostorm';
 import client from './redditApi';
 import { generate } from './generator';
@@ -28,7 +30,7 @@ const handleProcessing = (comment: Comment): void => {
 };
 
 const comments = new CommentStream(client, {
-  subreddit: 'krangler_bot_test',
+  subreddit: process.env.SUBREDDIT,
   limit: 10,
   pollTime: 2000,
 });
