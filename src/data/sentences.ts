@@ -25,7 +25,7 @@ export const closings = [
   'otherwise, you could always pray to solaris',
   'otherwise, you could always pray to lunaris',
   'well, i will resume different krangles now. see you.',
-  'see you on the shores of weaeclast',
+  'see you on the shores of wraeclast',
 ];
 
 export const linkingWords = ['then', 'while you', 'once you', 'if you correctly', 'afterwards,'];
