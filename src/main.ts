@@ -23,7 +23,11 @@ const krangleSearch = (text: string): boolean => {
 const handleProcessing = (comment: Comment): void => {
   if (krangleSearch(comment.body) && comment.author.name != 'krangler_bot' && connectedAt < comment.created_utc) {
     const reply = generate(comment);
-    comment.reply(reply);
+    try {
+      comment.reply(reply);
+    } catch (e) {
+      console.log(e);
+    }
 
     logging(comment, reply);
   }
