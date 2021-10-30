@@ -3,31 +3,36 @@ import client from './redditApi';
 import { generate } from './generator';
 import { Comment } from 'snoowrap';
 
-setInterval(() => {
-  console.log(generate());
-  console.log();
-}, 3000);
+let connectedAt = Date.now() / 1000;
 
-// ACTIONS ////////////////////////////////////////////////////////////////////
-// const krangleSearch = (text: string): boolean => {
-//   let regex = /krangl/i;
-//   if (regex.test(text)) return true;
-//   return false;
-// };
+const logging = (comment: Comment, reply: string) => {
+  console.log(`Posted reply to ${comment.id}`);
+  console.log(reply);
+  console.log('----------------------------------');
+};
 
-// // Handle incoming comments
-// const handleProcessing = (comment: Comment): void => {
-//   // Filter out non-krangled stuff
-//   if (krangleSearch(comment.body)) generate(comment);
-// };
+const krangleSearch = (text: string): boolean => {
+  let regex = /krangl/i;
+  if (regex.test(text)) return true;
+  return false;
+};
 
-// // EVENTS //////////////////////////////////////////////////////////////////////
-// const comments = new CommentStream(client, {
-//   subreddit: 'PathOfExile',
-//   limit: 10,
-//   pollTime: 2000,
-// });
+// process comments and reply
+const handleProcessing = (comment: Comment): void => {
+  if (krangleSearch(comment.body) && comment.author.name != 'krangler_bot' && connectedAt < comment.created_utc) {
+    const reply = generate(comment);
+    comment.reply(reply);
 
-// comments.on('item', (comment) => {
-//   handleProcessing(comment);
-// });
+    logging(comment, reply);
+  }
+};
+
+const comments = new CommentStream(client, {
+  subreddit: 'krangler_bot_test',
+  limit: 10,
+  pollTime: 2000,
+});
+
+comments.on('item', (comment) => {
+  handleProcessing(comment);
+});

@@ -6,35 +6,57 @@ import { getRandOf } from './data/ofs';
 import { getRandClosing, getRandLinkingWord, getRandMidSentence, getRandOpener } from './data/sentences';
 import { getRandVerb } from './data/verbs';
 
-const substitutePlaceholders = (reply: string): string => {
-  return reply
-    .replace(/{{ noun }}/g, getRandNoun())
-    .replace(/{{ verb }}/g, getRandVerb())
-    .replace(/{{ adverb }}/g, getRandAdverb())
-    .replace(/{{ adjective }}/g, getRandAdjective())
-    .replace(/{{ of }}/g, getRandOf());
+const substitutePlaceholders = (s: string, usr: string): string => {
+  return s
+    .split(' ')
+    .map((item) => {
+      switch (item) {
+        case '{{user}}':
+          return usr;
+          break;
+        case '{{noun}}':
+          return getRandNoun();
+          break;
+        case '{{verb}}':
+          return getRandVerb();
+          break;
+        case '{{adverb}}':
+          return getRandAdverb();
+          break;
+        case '{{adjective}}':
+          return getRandAdjective();
+          break;
+        case '{{of}}':
+          return getRandOf();
+          break;
+        default:
+          return item;
+          break;
+      }
+    })
+    .join(' ');
 };
 
-// export const generate = (comment: Comment): string => {
-export const generate = (): string => {
+export const generate = (comment: Comment): string => {
   let reply = '';
 
   //get a random opener
-  reply += getRandOpener();
+  reply += substitutePlaceholders(getRandOpener(), comment.author.name) + ':';
 
   //add first paragraph
-  reply += '\n\n First you';
+  reply += '\n\n';
+
+  //add first word
+  reply += 'first you ';
 
   //get random sentences
-  reply += getRandMidSentence() + ' ';
-  reply += getRandLinkingWord();
-  reply += getRandMidSentence();
+  reply += substitutePlaceholders(getRandMidSentence(), comment.author.name) + ', ';
+  reply += getRandLinkingWord() + ' ';
+  reply += substitutePlaceholders(getRandMidSentence(), comment.author.name) + '.';
 
   //add second paragraph
   reply += '\n\n';
-  reply += getRandClosing();
-
-  reply = substitutePlaceholders(reply);
+  reply += substitutePlaceholders(getRandClosing(), comment.author.name) + '!';
 
   return reply;
 };
