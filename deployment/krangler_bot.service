@@ -5,7 +5,7 @@ Description=A reddit bot for PathOfExile that krangles various items
 [Service]
 EnvironmentFile=/srv/krangler_bot/.env
 WorkingDirectory=/srv/krangler_bot
-ExecStart=/usr/bin/npm prod
+ExecStart=/usr/bin/npm run start
 Restart=always
 RestartSec=15
 User=kranglebot
